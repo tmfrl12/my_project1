@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+              integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+              crossorigin="anonymous">
+
+        <title>마이 데일리 다이어트 | 프로젝트</title>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+        <!--        &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+
+
+        <style>
+
+            @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR|ZCOOL+QingKe+HuangYou');
+
+            * {
+                margin: 0;
+                padding: 0;
+                color: #000;
+                font-family: 'Noto Sans KR', sans-serif;
+                box-sizing: border-box;
+            }
+
+            ul {
+                list-style: none;
+            }
+
+            a {
+                text-decoration: none;
+                outline: none;
+            }
+
+            .header_container {
+                width: 1440px;
+                margin: 0 auto;
+            }
+
+
+            header > h2 {
+                margin-left: 20px;
+                font-family: 'ZCOOL QingKe HuangYou', cursive;
+            }
+
+            #visual {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://badgut.org/wp-content/uploads/Image-Content-compromised-bowel.png);
+                background-size: cover;
+                background-position: 0% 20%;
+                width: 100%;
+                height: 500px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            #visual * {
+                color: white;
+            }
+
+            #visual h2 {
+                font-size: 60px;
+                font-family: 'ZCOOL QingKe HuangYou', cursive;
+            }
+
+            #visual p {
+                font-size: 15px;
+                margin: 30px 0;
+
+            }
+
+            .btn {
+                width: 120px;
+                padding: 8px 12px;
+                border: 3px solid #ddd;
+                box-sizing: border-box;
+                background-color: #70aa96;
+                border-radius: 4px;
+            }
+
+            .btn:hover {
+                background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
+            }
+
+            .content_date {
+                text-align: center;
+            }
+
+            #donutchart {
+                margin: auto;
+                justify-content: center;
+
+            }
+
+            .mydiet_title {
+                text-align: center;
+                margin-top: 50px;
+            }
+
+            #content {
+                display: flex;
+                justify-content: center;
+                margin-top: 40px;
+                border: 5px solid lightgray;
+                border-radius: 10px 10px 0 0;
+                padding: 10px;
+                width: 90%;
+                margin: auto;
+            }
+
+            #content > .item {
+                width: 30%;
+            }
+
+            .img {
+                width: 100%;
+                height: 250px;
+            }
+
+            .img > img {
+                width: 80%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 10px 10px 0 0;
+            }
+
+            .item .info {
+                width: 80%;
+                background: #fff;
+                padding: 20px;
+                border-radius: 0 0 10px 10px;
+                box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+            }
+
+            .button-row {
+                width: 100%;
+                text-align: right;
+            }
+
+            .btn-sm {
+                padding: 8px 12px;
+                font-size: 12px;
+                color: white;
+                width: auto;
+                border: 2px solid #ddd;
+            }
+
+            #post-box {
+                width: 50%;
+                margin: 20px auto;
+                padding: 50px;
+                border: black solid;
+                border-radius: 5px;
+            }
+
+            /*검색창*/
+            form.example input[type=text] {
+                padding: 10px;
+                font-size: 17px;
+                border: 1px solid grey;
+                float: left;
+                width: 80%;
+                background: #f1f1f1;
+            }
+
+            form.example button {
+                float: left;
+                width: 20%;
+                padding: 10px;
+                background: #2196F3;
+                color: white;
+                font-size: 17px;
+                border: 1px solid grey;
+                border-left: none;
+                cursor: pointer;
+            }
+
+            form.example button:hover {
+                background: #0b7dda;
+            }
+
+            form.example::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+
+
+        </style>
+        <script>
+            $(document).ready(function () {
+                // index.html 로드가 완료되면 자동으로 showStar() 함수를 호출합니다.
+                showPost();
+            });
+
+            function showPost() {
+                console.log("화면 로딩 후 잘 실행되었습니다");
+            }
+
+            function openClose() {
+                // id 값 post-box의 display 값이 block 이면(= 눈에 보이면)
+                if ($("#post-box").css("display") == "block") {
+                    // post-box를 가리고
+                    $("#post-box").hide();
+                    // 다시 버튼을 클릭하면, 박스 열기를 할 수 있게 텍스트 바꿔두기
+                    // $("#btn-post-box").text("포스팅 박스 열기");
+                } else {
+                    // 아니면(눈에 보이지 않으면) post-box를 펴라
+                    $("#post-box").show();
+                    // 다시 버튼을 클릭하면, 박스 닫기를 할 수 있게 텍스트 바꿔두기
+                    // $("#btn-post-box").text("포스팅 박스 닫기");
+                }
+            }
+
+        </script>
+
+        <script type="text/javascript">
+            google.charts.load("current", {packages: ["corechart"]});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Task', 'Hours per Day'],
+                    ['Work', 11],
+                    ['Eat', 2],
+                    ['Commute', 2],
+                    ['Watch TV', 2],
+                    ['Sleep', 7]
+                ]);
+
+                var options = {
+                    title: 'my daily diet',
+                    pieHole: 0.4,
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                chart.draw(data, options);
+            }
+        </script>
+
+    </head>
+
+
+    <body>
+        <!--        header-->
+        <div class="header_container">
+
+            <section id="visual">
+                <h2>MY daily diet</h2>
+                <p class="fn-font">자신의 식단을 기록할수 있어요<br>매일매일 식단을 기록하여 자신만의 식단일기를 만들어 봅시다</p>
+                <button onclick="openClose()" class="btn fn-font" type="button">식단 기록하기</button>
+            </section>
+        </div>
+
+        <!--        포스트박스-->
+        <div id="post-box" class="form-post" style="display:none">
+
+            <div>
+                <form class="example" action="/action_page.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+
+
+            <div>
+                <button type="button" class="btn fn-font" onclick="postArticle()">식단 저장</button>
+            </div>
+        </div>
+
+
+        <div class="mydiet_title">
+            <h3>8월 12일<br>300kcal 초과하였습니다</h3>
+        </div>
+        <!--        도넛도표-->
+        <div id="donutchart" style="width: 900px; height: 500px;"></div>
+
+        <!--        식단 보여주는 곳-->
+        <div class="content_date"><h3>8월 13일</h3></div>
+        <section id="content">
+            <div class="item">
+                <div class="img">
+                    <img src="https://newsimg.sedaily.com/2017/07/04/1OICFWL5PO_1.jpg">
+                </div>
+                <div class="info">
+                    <h4 class="fn-font">레벨 디자인</h4>
+                    <p class="fn-font">
+                        게임 기획은 참으로 고되고 힘든 일입니다.
+                        이곳에는 아무말이나 채워넣어야만합니다.
+                        그래야만 그럴듯해 보입니다. 더미 텍스트를 넣어봅시다.
+                    </p>
+                    <div class="button-row">
+                        <button class="btn fn-font btn-sm">더 알아보기</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="img">
+                    <img src="https://image.chosun.com/sitedata/image/201909/19/2019091900899_1.jpg">
+                </div>
+                <div class="info">
+                    <h4 class="fn-font">레벨 디자인</h4>
+                    <p class="fn-font">
+                        게임 기획은 참으로 고되고 힘든 일입니다.
+                        이곳에는 아무말이나 채워넣어야만합니다.
+                        그래야만 그럴듯해 보입니다. 더미 텍스트를 넣어봅시다.
+                    </p>
+                    <div class="button-row">
+                        <button class="btn fn-font btn-sm">더 알아보기</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="img">
+                    <img src="https://m.healingmenu.com/web/product/big/20200305/fb36826e1e7be319ef4d2f08625d6e49.jpg">
+                </div>
+                <div class="info">
+                    <h4 class="fn-font">레벨 디자인</h4>
+                    <p class="fn-font">
+                        게임 기획은 참으로 고되고 힘든 일입니다.
+                        이곳에는 아무말이나 채워넣어야만합니다.
+                        그래야만 그럴듯해 보입니다. 더미 텍스트를 넣어봅시다.
+                    </p>
+                    <div class="button-row">
+                        <button class="btn fn-font btn-sm">더 알아보기</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </body>
+</html>
