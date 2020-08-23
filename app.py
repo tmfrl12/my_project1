@@ -13,7 +13,7 @@ def home():
 @app.route('/diet', methods=['GET'])
 def read_diets():
    diets = list(db.kcal.find({}, {'_id': False}))
-# 2. 성공하면 success 메시지와 함께 stars_list 목록을 클라이언트에 전달합니다.
+# 2. 성공하면 success 메시지와 함께 stars_list 목록을 클라이언트에 전 달합니다.
    return jsonify({'result': 'success', 'diets_list': diets})
 
 if __name__ == '__main__':
